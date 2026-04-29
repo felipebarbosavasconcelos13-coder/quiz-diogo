@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { PlayCircle, CheckCircle2, Settings, Clock, CircleDollarSign, Wrench, Car, Play, Quote, Star } from "lucide-react";
 
-// Testimonial Videos
+// Testimonial Videos — mapeamento correto
 const testimonials = [
   { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
   { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
@@ -74,7 +74,7 @@ const questions: Question[] = [
       "A dor de perder dinheiro é duas vezes mais forte que o prazer de ganhar. Se você está recusando serviço, sua oficina está pagando para você trabalhar.",
     video: { show: false },
     testimonials: [
-      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
+      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio proprietário da Mecânica Edu — São Paulo" },
       { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
     ],
   },
@@ -238,7 +238,7 @@ export default function App() {
   };
 
   return (
-    <main className="min-h-screen bg-carbon relative flex items-center justify-center p-4">
+    <main className="min-h-[100dvh] bg-carbon relative flex items-center justify-center p-3 md:p-4">
       {/* Background radial glow */}
       <div className="fixed inset-0 pointer-events-none bg-radial-glow z-0" />
 
@@ -247,26 +247,26 @@ export default function App() {
           {/* STEP 1: CAPTURE */}
           {step === "capture" && (
             <motion.div key="capture" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-5 md:p-12 shadow-2xl relative overflow-hidden rounded-none">
+              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-4 md:p-10 shadow-2xl relative overflow-hidden rounded-none">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
                 {/* Hero with Diogo photo */}
-                <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-8">
                   <div className="flex-1">
-                    <div className="inline-block border border-primary text-primary px-4 py-1 text-xs font-black uppercase tracking-widest mb-6">
+                    <div className="inline-block border border-primary text-primary px-3 py-0.5 text-[10px] md:text-xs font-black uppercase tracking-widest mb-3 md:mb-6">
                       Diagnóstico Gratuito
                     </div>
                     
-                    <h1 className="text-3xl md:text-5xl font-black uppercase italic text-gradient leading-tight mb-4 tracking-tight">
+                    <h1 className="text-xl md:text-5xl font-black uppercase italic text-gradient leading-tight mb-2 md:mb-4 tracking-tight">
                       Você sente que está sendo atropelado pela tecnologia dos novos carros?
                     </h1>
                     
-                    <p className="text-muted-foreground text-lg mb-4 leading-relaxed">
+                    <p className="text-muted-foreground text-sm md:text-lg mb-2 md:mb-4 leading-relaxed">
                       Descubra agora o que está <strong className="text-white">travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong className="text-white">especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.
                     </p>
                   </div>
                   <div className="flex-shrink-0 relative order-first md:order-last">
-                    <div className="w-36 h-44 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary mx-auto">
+                    <div className="w-28 h-32 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary mx-auto">
                       <picture>
                         <source srcSet="/images/hero-mobile.webp" media="(max-width: 767px)" type="image/webp" />
                         <source srcSet="/images/hero-desktop.webp" media="(min-width: 768px)" type="image/webp" />
@@ -279,44 +279,44 @@ export default function App() {
                   </div>
                 </div>
 
-                <form onSubmit={handleLeadSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-xs text-white uppercase tracking-wider font-bold">Seu primeiro nome</Label>
+                <form onSubmit={handleLeadSubmit} className="space-y-3 md:space-y-5">
+                  <div className="space-y-1">
+                    <Label htmlFor="name" className="text-[10px] md:text-xs text-white uppercase tracking-wider font-bold">Seu primeiro nome</Label>
                     <Input 
                       id="name" 
                       required 
                       placeholder="Ex: João" 
-                      className="bg-black border-neutral-800 h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
+                      className="bg-black border-neutral-800 h-11 md:h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
                       value={userData.name}
                       onChange={(e) => setUserData({ ...userData, name: e.target.value })}
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-xs text-white uppercase tracking-wider font-bold">Seu melhor e-mail</Label>
+                  <div className="space-y-1">
+                    <Label htmlFor="email" className="text-[10px] md:text-xs text-white uppercase tracking-wider font-bold">Seu melhor e-mail</Label>
                     <Input 
                       id="email" 
                       type="email" 
                       required 
                       placeholder="joao@oficina.com.br" 
-                      className="bg-black border-neutral-800 h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
+                      className="bg-black border-neutral-800 h-11 md:h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
                       value={userData.email}
                       onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="whatsapp" className="text-xs text-white uppercase tracking-wider font-bold">Seu WhatsApp</Label>
+                  <div className="space-y-1">
+                    <Label htmlFor="whatsapp" className="text-[10px] md:text-xs text-white uppercase tracking-wider font-bold">Seu WhatsApp</Label>
                     <Input 
                       id="whatsapp" 
                       type="tel" 
                       required 
                       placeholder="(11) 99999-9999" 
-                      className="bg-black border-neutral-800 h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
+                      className="bg-black border-neutral-800 h-11 md:h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
                       value={userData.whatsapp}
                       onChange={(e) => setUserData({ ...userData, whatsapp: e.target.value })}
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full h-16 text-base md:text-lg font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_25px_rgba(255,123,41,0.5)] transition-all clip-button text-white border-0 mt-4">
+                  <Button type="submit" className="w-full h-14 md:h-16 text-sm md:text-lg font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_25px_rgba(255,123,41,0.5)] transition-all clip-button text-white border-0 mt-2">
                     Iniciar Diagnóstico Gratuito
                   </Button>
                 </form>
@@ -327,18 +327,18 @@ export default function App() {
           {/* STEP 2: INTRO */}
           {step === "intro" && (
             <motion.div key="intro" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-8 md:p-12 shadow-2xl relative overflow-hidden rounded-none text-center">
+              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-6 md:p-12 shadow-2xl relative overflow-hidden rounded-none text-center">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
-                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-6 text-white">
+                <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight mb-4 md:mb-6 text-white">
                   Bem-vindo, <span className="text-primary">{firstName}</span>!
                 </h2>
-                <p className="text-2xl font-bold mb-4 text-white">O mercado automotivo mudou.</p>
-                <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+                <p className="text-xl md:text-2xl font-bold mb-3 text-white">O mercado automotivo mudou.</p>
+                <p className="text-base md:text-lg text-muted-foreground mb-8 md:mb-10 leading-relaxed">
                   Quem não domina a eletrônica está perdendo dinheiro todos os dias para a concessionária. <strong className="text-white">{firstName}</strong>, responda com sinceridade às próximas {questions.length} perguntas e veja seu nível atual.
                 </p>
                 
-                <Button onClick={handleStartQuiz} className="w-full md:w-auto px-12 h-16 text-lg font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_25px_rgba(255,123,41,0.5)] transition-all clip-button text-white border-0">
+                <Button onClick={handleStartQuiz} className="w-full md:w-auto px-12 h-14 md:h-16 text-base md:text-lg font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_25px_rgba(255,123,41,0.5)] transition-all clip-button text-white border-0">
                   Começar o Quiz
                 </Button>
               </Card>
@@ -348,11 +348,11 @@ export default function App() {
           {/* STEP 3: QUIZ */}
           {step === "quiz" && (
             <motion.div key="quiz" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-6 md:p-10 shadow-2xl relative overflow-hidden rounded-none">
+              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-4 md:p-10 shadow-2xl relative overflow-hidden rounded-none">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
                 {/* RPM Progress Bar */}
-                <div className="w-full h-3 bg-black border border-neutral-800 mb-6 relative">
+                <div className="w-full h-2 md:h-3 bg-black border border-neutral-800 mb-4 md:mb-6 relative">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-primary to-secondary shadow-[0_0_15px_rgba(255,123,41,0.5)]"
                     initial={{ width: `${(currentQIndex / questions.length) * 100}%` }}
@@ -361,15 +361,15 @@ export default function App() {
                   />
                 </div>
                 
-                <div className="text-primary font-black uppercase tracking-widest text-sm mb-6">
+                <div className="text-primary font-black uppercase tracking-widest text-xs md:text-sm mb-3 md:mb-6">
                   Pergunta {currentQIndex + 1} de {questions.length}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-8 leading-snug">
+                <h3 className="text-lg md:text-2xl font-bold text-white mb-4 md:mb-8 leading-snug">
                   {currentQuestion.text}
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="space-y-2 md:space-y-4">
                   {currentQuestion.options.map((opt, idx) => {
                     const isSelected = selectedOption === idx;
                     const isCorrect = opt.correct;
@@ -398,9 +398,9 @@ export default function App() {
                       <div 
                         key={idx}
                         onClick={() => handleOptionSelect(idx, opt)}
-                        className={`group p-5 border border-l-4 ${borderLeft} ${bgClass} cursor-pointer transition-all duration-200 flex items-center ${showFeedback ? "pointer-events-none" : ""}`}
+                        className={`group p-3 md:p-5 border border-l-4 ${borderLeft} ${bgClass} cursor-pointer transition-all duration-200 flex items-center ${showFeedback ? "pointer-events-none" : ""}`}
                       >
-                        <span className={`text-lg font-semibold ${textColor}`}>{opt.text}</span>
+                        <span className={`text-sm md:text-lg font-semibold ${textColor}`}>{opt.text}</span>
                       </div>
                     );
                   })}
@@ -496,40 +496,42 @@ export default function App() {
 
           {/* STEP 5: RESULT */}
           {step === "result" && (
-            <motion.div key="result" variants={pageVariants} initial="initial" animate="animate" className="space-y-8">
+            <motion.div key="result" variants={pageVariants} initial="initial" animate="animate" className="space-y-6">
               
-              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-8 md:p-10 shadow-2xl relative rounded-none">
+              {/* Resultado Compacto */}
+              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-5 md:p-8 shadow-2xl relative rounded-none">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
-                <div className="inline-block border border-primary text-primary px-6 py-2 text-xl font-black tracking-widest mb-8 bg-black">
-                  Sua Pontuação: {score}/5
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+                  <div className="inline-block border border-primary text-primary px-4 py-1.5 text-lg md:text-xl font-black tracking-widest bg-black whitespace-nowrap">
+                    Sua Pontuação: {score}/5
+                  </div>
+                  <h2 className="text-xl md:text-3xl font-black uppercase italic text-white tracking-tight">
+                    {getProfile().title}
+                  </h2>
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-black uppercase italic text-white mb-8 tracking-tight">
-                  {getProfile().title}
-                </h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   <div className="bg-black p-6 border border-neutral-800 border-l-4 border-l-secondary">
-                      <h4 className="text-white font-black uppercase mb-3">Diagnóstico Atual</h4>
-                      <p className="text-neutral-400 leading-relaxed" dangerouslySetInnerHTML={{__html: getProfile().diagnostic}} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="bg-black p-4 md:p-5 border border-neutral-800 border-l-4 border-l-secondary">
+                      <h4 className="text-white font-black uppercase mb-2 text-sm">Diagnóstico Atual</h4>
+                      <p className="text-neutral-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: getProfile().diagnostic}} />
                    </div>
-                   <div className="bg-black p-6 border border-neutral-800 border-l-4 border-l-primary">
-                      <h4 className="text-primary font-black uppercase mb-3">Sua Oportunidade</h4>
-                      <p className="text-neutral-400 leading-relaxed" dangerouslySetInnerHTML={{__html: getProfile().opportunity}} />
+                   <div className="bg-black p-4 md:p-5 border border-neutral-800 border-l-4 border-l-primary">
+                      <h4 className="text-primary font-black uppercase mb-2 text-sm">Sua Oportunidade</h4>
+                      <p className="text-neutral-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: getProfile().opportunity}} />
                    </div>
                 </div>
               </Card>
 
-              {/* Testimonials Section - remaining proofs */}
-              <div className="bg-[#0a0a0a] border border-neutral-800 p-6 md:p-10 relative overflow-hidden">
-                <div className="flex items-center gap-3 mb-6">
-                  <Quote className="text-primary w-7 h-7" />
-                  <h3 className="text-xl md:text-2xl font-black uppercase text-white tracking-tight">
+              {/* Depoimentos restantes */}
+              <div className="bg-[#0a0a0a] border border-neutral-800 p-4 md:p-6 relative overflow-hidden">
+                <div className="flex items-center gap-2 mb-4">
+                  <Quote className="text-primary w-5 h-5" />
+                  <h3 className="text-base md:text-lg font-black uppercase text-white tracking-tight">
                     Mais alunos transformados:
                   </h3>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   {[
                     { src: "/videos/WhatsApp-Video-2026-03-02-at-19.27.09.mp4", name: "Aluno", info: "Depoimento real" },
                     { src: "/videos/WhatsApp-Video-2026-03-21-at-15.49.03.mp4", name: "Aluno", info: "Depoimento real" },
@@ -538,90 +540,122 @@ export default function App() {
                       <video controls preload="metadata" className="w-full aspect-video bg-black" playsInline>
                         <source src={t.src} type="video/mp4" />
                       </video>
-                      <div className="p-3 border-t border-neutral-800 border-l-4 border-l-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="text-white font-bold text-sm">{t.name}</span>
-                          <div className="flex gap-0.5">{[...Array(5)].map((_, s) => (<Star key={s} className="w-3 h-3 fill-primary text-primary" />))}</div>
+                      <div className="p-2 border-t border-neutral-800 border-l-2 border-l-primary">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-white font-bold text-xs">{t.name}</span>
+                          <div className="flex gap-0.5">{[...Array(5)].map((_, s) => (<Star key={s} className="w-2.5 h-2.5 fill-primary text-primary" />))}</div>
                         </div>
-                        <p className="text-neutral-500 text-xs mt-0.5">{t.info}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Landing Page Offer Area */}
-              <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-neutral-800 p-8 md:p-12 relative overflow-hidden border-b-4 border-b-primary">
-                <h1 className="text-3xl md:text-5xl font-black uppercase text-center mb-10 leading-tight">
-                  Saia da &quot;Briga por Preço&quot; e torne-se o <span className="text-primary">Especialista</span> que as concessionárias tentam esconder.
-                </h1>
+              {/* LANDING PAGE — OFERTA PREMIUM */}
+              <div className="relative overflow-hidden">
+                {/* Glow de fundo */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+                
+                <div className="bg-gradient-to-b from-[#0a0a0a] to-[#030303] border border-neutral-800 p-5 md:p-10 relative border-t-4 border-t-primary">
+                  
+                  <h1 className="text-2xl md:text-4xl font-black uppercase text-center mb-6 md:mb-8 leading-tight">
+                    Saia da &quot;Briga por Preço&quot; e torne-se o <span className="text-primary">Especialista</span> que as concessionárias tentam esconder.
+                  </h1>
 
-                <div className="w-full aspect-video bg-black border border-neutral-800 relative flex flex-col justify-center items-center cursor-pointer group shadow-2xl overflow-hidden mb-10">
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(255,255,255,0.03),transparent)]" />
-                  <PlayCircle className="w-20 h-20 text-neutral-600 group-hover:text-primary transition-all duration-300 group-hover:scale-110 mb-4" />
-                  <span className="text-neutral-400 font-semibold text-lg z-10">Assista e entenda o método</span>
-                </div>
-
-                <p className="text-xl text-center text-neutral-300 mb-10">
-                  O curso <strong>Especialista em CAN BUS</strong> é o único passo a passo prático que te ensina a dominar a eletrônica veicular sem precisar de diploma de engenharia.
-                </p>
-
-                <div className="grid grid-cols-1 gap-4 mb-12">
-                   <div className="flex items-center gap-4 bg-black border border-neutral-800 p-5">
-                      <Settings className="text-primary w-8 h-8 flex-shrink-0" />
-                      <span className="text-white font-semibold text-lg">Fim do medo de errar diagnóstico e &quot;queimar o nome&quot;.</span>
-                   </div>
-                   <div className="flex items-center gap-4 bg-black border border-neutral-800 p-5">
-                      <Clock className="text-primary w-8 h-8 flex-shrink-0" />
-                      <span className="text-white font-semibold text-lg">Redução drástica do tempo perdido com carros parados.</span>
-                   </div>
-                   <div className="flex items-center gap-4 bg-black border border-neutral-800 p-5">
-                      <CircleDollarSign className="text-primary w-8 h-8 flex-shrink-0" />
-                      <span className="text-white font-semibold text-lg">Liberdade para cobrar pelo conhecimento, não só pelas peças.</span>
-                   </div>
-                   <div className="flex items-center gap-4 bg-black border border-neutral-800 p-5">
-                      <Wrench className="text-primary w-8 h-8 flex-shrink-0" />
-                      <span className="text-white font-semibold text-lg">Domínio total de Scanners e Osciloscópios.</span>
-                   </div>
-                   <div className="flex items-center gap-4 bg-black border border-neutral-800 p-5">
-                      <Car className="text-primary w-8 h-8 flex-shrink-0" />
-                      <span className="text-white font-semibold text-lg">Casos reais de oficina: i30, Jetta e Peugeot.</span>
-                   </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-8 bg-black p-8 border border-neutral-800 mb-12">
-                  <div className="w-28 h-28 md:w-32 md:h-32 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
-                    <picture>
-                      <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
-                      <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
-                      <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-full h-full object-cover" loading="lazy" />
-                    </picture>
+                  <div className="w-full aspect-video bg-black border border-neutral-800 relative flex flex-col justify-center items-center cursor-pointer group shadow-2xl overflow-hidden mb-6 md:mb-8 max-w-2xl mx-auto">
+                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(255,255,255,0.03),transparent)]" />
+                    <PlayCircle className="w-14 h-14 md:w-20 md:h-20 text-neutral-600 group-hover:text-primary transition-all duration-300 group-hover:scale-110 mb-2" />
+                    <span className="text-neutral-400 font-semibold text-sm md:text-lg z-10">Assista e entenda o método</span>
                   </div>
-                  <div className="text-center sm:text-left">
-                    <h4 className="text-2xl font-black uppercase text-white mb-2">Com o Mestre Diogo</h4>
-                    <p className="text-neutral-400 leading-relaxed text-lg">
-                      Mais de 15 anos dentro de oficina descascando pepinos que ninguém queria pegar. Criador do método que já destravou milhares de reparadores pelo Brasil.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="text-center bg-[#050505] p-10 border border-neutral-800">
-                  <p className="text-xl text-neutral-300 mb-6">
-                    A janela de oportunidade está fechando. Ou você se atualiza, <strong className="text-white">ou as oficinas especializadas vão roubar seus melhores clientes.</strong>
+                  <p className="text-base md:text-lg text-center text-neutral-300 mb-6 md:mb-8 max-w-2xl mx-auto">
+                    O curso <strong className="text-white">Especialista em CAN BUS</strong> é o único passo a passo prático que te ensina a dominar a eletrônica veicular sem precisar de diploma de engenharia.
                   </p>
-                  
-                  <div className="mb-10">
-                    <div className="text-6xl font-black text-primary drop-shadow-[0_0_20px_rgba(255,123,41,0.5)] mb-2 tracking-tighter">
-                      12x R$ 49,90
+
+                  {/* Benefícios compactos */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 mb-6 md:mb-8">
+                     <div className="flex items-center gap-3 bg-black border border-neutral-800 p-3 md:p-4">
+                        <Settings className="text-primary w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-white font-medium text-sm">Fim do medo de errar diagnóstico e &quot;queimar o nome&quot;.</span>
+                     </div>
+                     <div className="flex items-center gap-3 bg-black border border-neutral-800 p-3 md:p-4">
+                        <Clock className="text-primary w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-white font-medium text-sm">Reduza o tempo perdido com carros parados.</span>
+                     </div>
+                     <div className="flex items-center gap-3 bg-black border border-neutral-800 p-3 md:p-4">
+                        <CircleDollarSign className="text-primary w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-white font-medium text-sm">Cobre pelo conhecimento, não só pelas peças.</span>
+                     </div>
+                     <div className="flex items-center gap-3 bg-black border border-neutral-800 p-3 md:p-4">
+                        <Wrench className="text-primary w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-white font-medium text-sm">Domínio total de Scanners e Osciloscópios.</span>
+                     </div>
+                     <div className="flex items-center gap-3 bg-black border border-neutral-800 p-3 md:p-4 md:col-span-2">
+                        <Car className="text-primary w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-white font-medium text-sm">Casos reais de oficina: i30, Jetta e Peugeot.</span>
+                     </div>
+                  </div>
+
+                  {/* Sobre o Diogo — compacto */}
+                  <div className="flex items-center gap-4 md:gap-6 bg-black p-4 md:p-6 border border-neutral-800 mb-6 md:mb-8">
+                    <div className="w-20 h-20 md:w-28 md:h-28 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
+                      <picture>
+                        <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
+                        <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
+                        <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-full h-full object-cover" loading="lazy" />
+                      </picture>
                     </div>
-                    <div className="text-neutral-500 font-bold uppercase tracking-widest text-sm">
-                      Ou R$ 497,00 à vista
+                    <div>
+                      <h4 className="text-lg md:text-xl font-black uppercase text-white mb-1">Com o Mestre Diogo</h4>
+                      <p className="text-neutral-400 leading-relaxed text-xs md:text-sm">
+                        +15 anos de oficina. Criador do método que já destravou milhares de reparadores pelo Brasil.
+                      </p>
                     </div>
                   </div>
-                  
-                  <Button className="w-full h-20 text-xl md:text-2xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_35px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02]">
-                    Quero Dominar a Rede CAN Agora
-                  </Button>
+
+                  {/* BLOCO DE PREÇO — ANCORAGEM AGRESSIVA */}
+                  <div className="relative bg-[#050505] border-2 border-primary/30 p-6 md:p-10 overflow-hidden">
+                    {/* Selo de desconto */}
+                    <div className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] md:text-xs font-black uppercase px-4 py-1.5 tracking-wider shadow-lg z-10">
+                      🔥 Oferta Especial
+                    </div>
+                    
+                    <p className="text-base md:text-lg text-neutral-300 text-center mb-6">
+                      A janela de oportunidade está fechando. Ou você se atualiza, <strong className="text-white">ou as oficinas especializadas vão roubar seus melhores clientes.</strong>
+                    </p>
+
+                    {/* Ancoragem */}
+                    <div className="text-center mb-6">
+                      <div className="text-neutral-600 text-sm md:text-base font-bold uppercase tracking-wider mb-1">Valor real do curso:</div>
+                      <div className="text-neutral-600 text-2xl md:text-4xl font-black line-through decoration-secondary decoration-[3px] mb-4">R$ 2.997,00</div>
+                      
+                      <div className="inline-block bg-primary/10 border border-primary/30 px-4 py-1 mb-4">
+                        <span className="text-primary text-xs md:text-sm font-black uppercase tracking-wider">Desconto exclusivo para quem fez o quiz</span>
+                      </div>
+                      
+                      <div className="text-5xl md:text-7xl font-black text-primary drop-shadow-[0_0_30px_rgba(255,123,41,0.5)] mb-1 tracking-tighter leading-none">
+                        12x R$ 49<span className="text-3xl md:text-5xl">,90</span>
+                      </div>
+                      <div className="text-neutral-500 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
+                        Ou R$ 497,00 à vista
+                      </div>
+                      <div className="text-primary/60 text-[10px] md:text-xs font-semibold">
+                        Economia de R$ 2.500,00 — apenas hoje
+                      </div>
+                    </div>
+                    
+                    <Button className="w-full h-16 md:h-20 text-base md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
+                      Quero Dominar a Rede CAN Agora ➔
+                    </Button>
+                    
+                    <div className="flex items-center justify-center gap-4 text-neutral-600 text-[10px] md:text-xs">
+                      <span>🔒 Pagamento 100% seguro</span>
+                      <span>•</span>
+                      <span>7 dias de garantia</span>
+                      <span>•</span>
+                      <span>Acesso imediato</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
