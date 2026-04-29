@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, FormEvent, useEffect, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,6 +30,8 @@ type Option = {
   correct: boolean;
 };
 
+type Testimonial = { src: string; name: string; info: string };
+
 type Question = {
   type: "technical" | "strategic";
   text: string;
@@ -40,6 +41,7 @@ type Question = {
     show: boolean;
     call?: string;
   };
+  testimonials?: Testimonial[];
 };
 
 // Data
@@ -71,6 +73,10 @@ const questions: Question[] = [
     feedback:
       "A dor de perder dinheiro é duas vezes mais forte que o prazer de ganhar. Se você está recusando serviço, sua oficina está pagando para você trabalhar.",
     video: { show: false },
+    testimonials: [
+      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
+      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
+    ],
   },
   {
     type: "technical",
@@ -106,6 +112,10 @@ const questions: Question[] = [
     feedback:
       "Tendemos a deixar as coisas como estão (Status Quo), mas a mudança é inevitável. Quem antecipa a evolução domina a região.",
     video: { show: false },
+    testimonials: [
+      { src: "/videos/WhatsApp-Video-2026-03-03-at-08.48.48.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
+      { src: "/videos/WhatsApp-Video-2026-03-21-at-15.44.45.mp4", name: "Luís", info: "São Paulo" },
+    ],
   },
   {
     type: "technical",
@@ -237,7 +247,7 @@ export default function App() {
           {/* STEP 1: CAPTURE */}
           {step === "capture" && (
             <motion.div key="capture" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-8 md:p-12 shadow-2xl relative overflow-hidden rounded-none">
+              <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-5 md:p-12 shadow-2xl relative overflow-hidden rounded-none">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
                 {/* Hero with Diogo photo */}
@@ -255,9 +265,13 @@ export default function App() {
                       Descubra agora o que está <strong className="text-white">travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong className="text-white">especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.
                     </p>
                   </div>
-                  <div className="flex-shrink-0 relative">
-                    <div className="w-48 h-56 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary">
-                      <Image src="/images/Hero.png" alt="Diogo — Especialista em Rede CAN" fill className="object-cover object-top" priority />
+                  <div className="flex-shrink-0 relative order-first md:order-last">
+                    <div className="w-36 h-44 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary mx-auto">
+                      <picture>
+                        <source srcSet="/images/hero-mobile.webp" media="(max-width: 767px)" type="image/webp" />
+                        <source srcSet="/images/hero-desktop.webp" media="(min-width: 768px)" type="image/webp" />
+                        <img src="/images/Hero.png" alt="Diogo — Especialista em Rede CAN" className="w-full h-full object-cover object-top" loading="eager" />
+                      </picture>
                     </div>
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 whitespace-nowrap">
                       Mestre Diogo
@@ -429,6 +443,30 @@ export default function App() {
                           </p>
                         </div>
                       )}
+                      {currentQuestion.testimonials && currentQuestion.testimonials.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex items-center gap-2 mb-4">
+                            <Quote className="text-primary w-5 h-5" />
+                            <span className="text-sm font-black uppercase text-neutral-400 tracking-wider">Quem já passou por isso:</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {currentQuestion.testimonials.map((t, i) => (
+                              <div key={i} className="bg-[#0a0a0a] border border-neutral-800 overflow-hidden">
+                                <video controls preload="metadata" className="w-full aspect-video bg-black" playsInline>
+                                  <source src={t.src} type="video/mp4" />
+                                </video>
+                                <div className="p-3 border-t border-neutral-800 border-l-4 border-l-primary">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-white font-bold text-sm">{t.name}</span>
+                                    <div className="flex gap-0.5">{[...Array(5)].map((_, s) => (<Star key={s} className="w-3 h-3 fill-primary text-primary" />))}</div>
+                                  </div>
+                                  <p className="text-neutral-500 text-xs mt-0.5">{t.info}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       <Button onClick={handleNextQuestion} className="w-full h-14 text-base font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_25px_rgba(255,123,41,0.5)] transition-all clip-button text-white border-0">
                         {isLastQuestion ? "Ver meu diagnóstico ➔" : "Próxima Etapa ➔"}
@@ -483,35 +521,29 @@ export default function App() {
                 </div>
               </Card>
 
-              {/* Testimonials Section */}
-              <div className="bg-[#0a0a0a] border border-neutral-800 p-8 md:p-10 relative overflow-hidden">
-                <div className="flex items-center gap-3 mb-8">
-                  <Quote className="text-primary w-8 h-8" />
-                  <h3 className="text-2xl font-black uppercase text-white tracking-tight">
-                    Quem já passou por isso fala:
+              {/* Testimonials Section - remaining proofs */}
+              <div className="bg-[#0a0a0a] border border-neutral-800 p-6 md:p-10 relative overflow-hidden">
+                <div className="flex items-center gap-3 mb-6">
+                  <Quote className="text-primary w-7 h-7" />
+                  <h3 className="text-xl md:text-2xl font-black uppercase text-white tracking-tight">
+                    Mais alunos transformados:
                   </h3>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {testimonials.map((t, i) => (
-                    <div key={i} className="bg-black border border-neutral-800 overflow-hidden group">
-                      <video
-                        controls
-                        preload="metadata"
-                        className="w-full aspect-video bg-black"
-                        playsInline
-                      >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { src: "/videos/WhatsApp-Video-2026-03-02-at-19.27.09.mp4", name: "Aluno", info: "Depoimento real" },
+                    { src: "/videos/WhatsApp-Video-2026-03-21-at-15.49.03.mp4", name: "Aluno", info: "Depoimento real" },
+                  ].map((t, i) => (
+                    <div key={i} className="bg-black border border-neutral-800 overflow-hidden">
+                      <video controls preload="metadata" className="w-full aspect-video bg-black" playsInline>
                         <source src={t.src} type="video/mp4" />
                       </video>
-                      <div className="p-4 border-t border-neutral-800 border-l-4 border-l-primary">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-white font-black text-lg">{t.name}</span>
-                          <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, s) => (
-                              <Star key={s} className="w-3.5 h-3.5 fill-primary text-primary" />
-                            ))}
-                          </div>
+                      <div className="p-3 border-t border-neutral-800 border-l-4 border-l-primary">
+                        <div className="flex items-center gap-2">
+                          <span className="text-white font-bold text-sm">{t.name}</span>
+                          <div className="flex gap-0.5">{[...Array(5)].map((_, s) => (<Star key={s} className="w-3 h-3 fill-primary text-primary" />))}</div>
                         </div>
-                        <p className="text-neutral-500 text-sm">{t.info}</p>
+                        <p className="text-neutral-500 text-xs mt-0.5">{t.info}</p>
                       </div>
                     </div>
                   ))}
@@ -558,8 +590,12 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-8 bg-black p-8 border border-neutral-800 mb-12">
-                  <div className="w-32 h-32 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
-                    <Image src="/images/Diogo.jpg" alt="Diogo na oficina" fill className="object-cover" />
+                  <div className="w-28 h-28 md:w-32 md:h-32 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
+                    <picture>
+                      <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
+                      <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
+                      <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-full h-full object-cover" loading="lazy" />
+                    </picture>
                   </div>
                   <div className="text-center sm:text-left">
                     <h4 className="text-2xl font-black uppercase text-white mb-2">Com o Mestre Diogo</h4>
