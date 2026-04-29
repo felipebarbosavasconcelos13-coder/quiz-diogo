@@ -1,12 +1,23 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, CheckCircle2, Settings, Clock, CircleDollarSign, Wrench, Car } from "lucide-react";
+import { PlayCircle, CheckCircle2, Settings, Clock, CircleDollarSign, Wrench, Car, Play, Quote, Star } from "lucide-react";
+
+// Testimonial Videos
+const testimonials = [
+  { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
+  { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
+  { src: "/videos/WhatsApp-Video-2026-03-02-at-19.27.09.mp4", name: "Aluno", info: "Depoimento real" },
+  { src: "/videos/WhatsApp-Video-2026-03-03-at-08.48.48.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
+  { src: "/videos/WhatsApp-Video-2026-03-21-at-15.44.45.mp4", name: "Luís", info: "São Paulo" },
+  { src: "/videos/WhatsApp-Video-2026-03-21-at-15.49.03.mp4", name: "Aluno", info: "Depoimento real" },
+];
 
 // Types
 type UserData = {
@@ -150,7 +161,7 @@ const profiles = {
 // Animation Variants
 const pageVariants = {
   initial: { opacity: 0, y: 40, scale: 0.98 },
-  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
   exit: { opacity: 0, y: -40, scale: 0.98, transition: { duration: 0.3 } },
 };
 
@@ -229,17 +240,30 @@ export default function App() {
               <Card className="bg-[#0a0a0a]/90 backdrop-blur border-border border-t-4 border-t-primary p-8 md:p-12 shadow-2xl relative overflow-hidden rounded-none">
                 <div className="absolute top-[-4px] right-0 w-[30%] h-1 bg-secondary" />
                 
-                <div className="inline-block border border-primary text-primary px-4 py-1 text-xs font-black uppercase tracking-widest mb-6">
-                  Diagnóstico Gratuito
+                {/* Hero with Diogo photo */}
+                <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+                  <div className="flex-1">
+                    <div className="inline-block border border-primary text-primary px-4 py-1 text-xs font-black uppercase tracking-widest mb-6">
+                      Diagnóstico Gratuito
+                    </div>
+                    
+                    <h1 className="text-3xl md:text-5xl font-black uppercase italic text-gradient leading-tight mb-4 tracking-tight">
+                      Você sente que está sendo atropelado pela tecnologia dos novos carros?
+                    </h1>
+                    
+                    <p className="text-muted-foreground text-lg mb-4 leading-relaxed">
+                      Descubra agora o que está <strong className="text-white">travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong className="text-white">especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.
+                    </p>
+                  </div>
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-48 h-56 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary">
+                      <Image src="/images/Hero.png" alt="Diogo — Especialista em Rede CAN" fill className="object-cover object-top" priority />
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 whitespace-nowrap">
+                      Mestre Diogo
+                    </div>
+                  </div>
                 </div>
-                
-                <h1 className="text-3xl md:text-5xl font-black uppercase italic text-gradient leading-tight mb-4 tracking-tight">
-                  Você sente que está sendo atropelado pela tecnologia dos novos carros?
-                </h1>
-                
-                <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                  Descubra agora o que está <strong className="text-white">travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong className="text-white">especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.
-                </p>
 
                 <form onSubmit={handleLeadSubmit} className="space-y-6">
                   <div className="space-y-2">
@@ -459,6 +483,41 @@ export default function App() {
                 </div>
               </Card>
 
+              {/* Testimonials Section */}
+              <div className="bg-[#0a0a0a] border border-neutral-800 p-8 md:p-10 relative overflow-hidden">
+                <div className="flex items-center gap-3 mb-8">
+                  <Quote className="text-primary w-8 h-8" />
+                  <h3 className="text-2xl font-black uppercase text-white tracking-tight">
+                    Quem já passou por isso fala:
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {testimonials.map((t, i) => (
+                    <div key={i} className="bg-black border border-neutral-800 overflow-hidden group">
+                      <video
+                        controls
+                        preload="metadata"
+                        className="w-full aspect-video bg-black"
+                        playsInline
+                      >
+                        <source src={t.src} type="video/mp4" />
+                      </video>
+                      <div className="p-4 border-t border-neutral-800 border-l-4 border-l-primary">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-white font-black text-lg">{t.name}</span>
+                          <div className="flex gap-0.5">
+                            {[...Array(5)].map((_, s) => (
+                              <Star key={s} className="w-3.5 h-3.5 fill-primary text-primary" />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-neutral-500 text-sm">{t.info}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Landing Page Offer Area */}
               <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-neutral-800 p-8 md:p-12 relative overflow-hidden border-b-4 border-b-primary">
                 <h1 className="text-3xl md:text-5xl font-black uppercase text-center mb-10 leading-tight">
@@ -499,8 +558,8 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-8 bg-black p-8 border border-neutral-800 mb-12">
-                  <div className="w-28 h-28 rounded-full border-4 border-primary p-1 flex-shrink-0 flex items-center justify-center bg-neutral-900">
-                    <span className="text-neutral-500 font-bold">FOTO</span>
+                  <div className="w-32 h-32 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
+                    <Image src="/images/Diogo.jpg" alt="Diogo na oficina" fill className="object-cover" />
                   </div>
                   <div className="text-center sm:text-left">
                     <h4 className="text-2xl font-black uppercase text-white mb-2">Com o Mestre Diogo</h4>
