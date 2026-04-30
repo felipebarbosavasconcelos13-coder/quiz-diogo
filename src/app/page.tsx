@@ -6,16 +6,16 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, CheckCircle2, Settings, Clock, CircleDollarSign, Wrench, Car, Play, Quote, Star } from "lucide-react";
+import { PlayCircle, Settings, Clock, CircleDollarSign, Wrench, Car, Quote, Star } from "lucide-react";
 
 // Testimonial Videos — mapeamento correto
 const testimonials = [
-  { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
-  { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
-  { src: "/videos/WhatsApp-Video-2026-03-02-at-19.27.09.mp4", name: "Aluno", info: "Depoimento real" },
-  { src: "/videos/WhatsApp-Video-2026-03-03-at-08.48.48.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
-  { src: "/videos/WhatsApp-Video-2026-03-21-at-15.44.45.mp4", name: "Luís", info: "São Paulo" },
-  { src: "/videos/WhatsApp-Video-2026-03-21-at-15.49.03.mp4", name: "Aluno", info: "Depoimento real" },
+  { src: "/videos/Cristian Socio proprietario da Mecanica Edu de Sao paulo.mp4", name: "Cristian", info: "Sócio-proprietário da Mecânica Edu — São Paulo" },
+  { src: "/videos/Rubens de Portugual.mp4", name: "Rubens", info: "Portugal" },
+  { src: "/videos/sem dados.mp4", name: "Aluno", info: "Depoimento real" },
+  { src: "/videos/Fernando de Pato branco Parana.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
+  { src: "/videos/Luis de Sao paulo.mp4", name: "Luís", info: "São Paulo" },
+  { src: "/videos/sem dados 2.mp4", name: "Aluno", info: "Depoimento real" },
 ];
 
 // Types
@@ -74,8 +74,8 @@ const questions: Question[] = [
       "A dor de perder dinheiro é duas vezes mais forte que o prazer de ganhar. Se você está recusando serviço, sua oficina está pagando para você trabalhar.",
     video: { show: false },
     testimonials: [
-      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.37.16.mp4", name: "Cristian", info: "Sócio proprietário da Mecânica Edu — São Paulo" },
-      { src: "/videos/WhatsApp-Video-2026-03-04-at-08.23.19.mp4", name: "Rubens", info: "Portugal" },
+      { src: "/videos/Cristian Socio proprietario da Mecanica Edu de Sao paulo.mp4", name: "Cristian", info: "Sócio proprietário da Mecânica Edu — São Paulo" },
+      { src: "/videos/Rubens de Portugual.mp4", name: "Rubens", info: "Portugal" },
     ],
   },
   {
@@ -113,8 +113,8 @@ const questions: Question[] = [
       "Tendemos a deixar as coisas como estão (Status Quo), mas a mudança é inevitável. Quem antecipa a evolução domina a região.",
     video: { show: false },
     testimonials: [
-      { src: "/videos/WhatsApp-Video-2026-03-03-at-08.48.48.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
-      { src: "/videos/WhatsApp-Video-2026-03-21-at-15.44.45.mp4", name: "Luís", info: "São Paulo" },
+      { src: "/videos/Fernando de Pato branco Parana.mp4", name: "Fernando", info: "Pato Branco — Paraná" },
+      { src: "/videos/Luis de Sao paulo.mp4", name: "Luís", info: "São Paulo" },
     ],
   },
   {
@@ -533,8 +533,8 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { src: "/videos/WhatsApp-Video-2026-03-02-at-19.27.09.mp4", name: "Aluno", info: "Depoimento real" },
-                    { src: "/videos/WhatsApp-Video-2026-03-21-at-15.49.03.mp4", name: "Aluno", info: "Depoimento real" },
+                    { src: "/videos/sem dados.mp4", name: "Aluno", info: "Depoimento real" },
+                    { src: "/videos/sem dados 2.mp4", name: "Aluno", info: "Depoimento real" },
                   ].map((t, i) => (
                     <div key={i} className="bg-black border border-neutral-800 overflow-hidden">
                       <video controls preload="metadata" className="w-full aspect-video bg-black" playsInline>
@@ -561,12 +561,6 @@ export default function App() {
                   <h1 className="text-2xl md:text-4xl font-black uppercase text-center mb-6 md:mb-8 leading-tight">
                     Saia da &quot;Briga por Preço&quot; e torne-se o <span className="text-primary">Especialista</span> que as concessionárias tentam esconder.
                   </h1>
-
-                  <div className="w-full aspect-video bg-black border border-neutral-800 relative flex flex-col justify-center items-center cursor-pointer group shadow-2xl overflow-hidden mb-6 md:mb-8 max-w-2xl mx-auto">
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(255,255,255,0.03),transparent)]" />
-                    <PlayCircle className="w-14 h-14 md:w-20 md:h-20 text-neutral-600 group-hover:text-primary transition-all duration-300 group-hover:scale-110 mb-2" />
-                    <span className="text-neutral-400 font-semibold text-sm md:text-lg z-10">Assista e entenda o método</span>
-                  </div>
 
                   <p className="text-base md:text-lg text-center text-neutral-300 mb-6 md:mb-8 max-w-2xl mx-auto">
                     O curso <strong className="text-white">Especialista em CAN BUS</strong> é o único passo a passo prático que te ensina a dominar a eletrônica veicular sem precisar de diploma de engenharia.
