@@ -40,6 +40,7 @@ type Question = {
   video: {
     show: boolean;
     call?: string;
+    src?: string;
   };
   testimonials?: Testimonial[];
 };
@@ -59,6 +60,7 @@ const questions: Question[] = [
       "O valor de 60 Ohms indica o paralelo dos resistores de terminação (120 Ohms cada). Errar esse conceito básico pode te fazer condenar um módulo sem necessidade.",
     video: {
       show: true,
+      src: "/videos/respostas/1.mp4",
       call: "Veja como um teste de 10 segundos pode salvar seu dia na oficina.",
     },
   },
@@ -95,6 +97,7 @@ const questions: Question[] = [
       'O DTC "U" refere-se especificamente à comunicação de rede. Trocar o chicote ou módulos sem investigar a causa lógica é o erro fatal do "trocador de peças".',
     video: {
       show: true,
+      src: "/videos/respostas/2.mp4",
       call: 'Entenda de uma vez por todas o que os códigos "U" querem te dizer.',
     },
   },
@@ -139,6 +142,7 @@ const questions: Question[] = [
       'O analisador de impedância é a ferramenta de quem não quer "chutar" o diagnóstico.',
     video: {
       show: true,
+      src: "/videos/respostas/3.mp4",
       call: "Pare de usar ferramentas do século passado para carros modernos.",
     },
   },
@@ -433,11 +437,17 @@ export default function App() {
 
                       {currentQuestion.video.show && (
                         <div className="mb-6">
-                          <div className="w-full aspect-video bg-black border border-neutral-800 relative flex flex-col justify-center items-center cursor-pointer group shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
-                            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(255,255,255,0.03),transparent)]" />
-                            <PlayCircle className="w-16 h-16 text-neutral-600 group-hover:text-primary transition-all duration-300 group-hover:scale-110 mb-3" />
-                            <span className="text-neutral-500 font-semibold z-10">Vídeo Explicativo</span>
-                          </div>
+                          {currentQuestion.video.src ? (
+                            <video controls className="w-full aspect-video bg-black" playsInline>
+                              <source src={currentQuestion.video.src} type="video/mp4" />
+                            </video>
+                          ) : (
+                            <div className="w-full aspect-video bg-black border border-neutral-800 relative flex flex-col justify-center items-center cursor-pointer group shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
+                              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(255,255,255,0.03),transparent)]" />
+                              <PlayCircle className="w-16 h-16 text-neutral-600 group-hover:text-primary transition-all duration-300 group-hover:scale-110 mb-3" />
+                              <span className="text-neutral-500 font-semibold z-10">Vídeo Explicativo</span>
+                            </div>
+                          )}
                           <p className="text-center text-primary font-bold mt-4">
                             {currentQuestion.video.call}
                           </p>
