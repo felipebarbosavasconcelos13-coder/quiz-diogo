@@ -201,7 +201,44 @@ export default function App() {
 
   const handleLeadSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    const whatsappRaw = userData.whatsapp.replace(/\D/g, "");
+    if (whatsappRaw.length !== 11) {
+      alert("Informe um número de WhatsApp válido com DDD (ex: 11999999999).");
+      return;
+    }
+    if (/^(\d)\1{10}$/.test(whatsappRaw)) {
+      alert("Número de WhatsApp inválido. Verifique e tente novamente.");
+      return;
+    }
+    const ddd = parseInt(whatsappRaw.substring(0, 2));
+    if (ddd < 11 || ddd > 99) {
+      alert("DDD inválido. Informe um número de WhatsApp com DDD correto.");
+      return;
+    }
+
+    (window as unknown as Record<string, unknown>).dataLayer = (window as unknown as Record<string, unknown>).dataLayer || [];
+    ((window as unknown as Record<string, unknown>).dataLayer as unknown[]).push({
+      event: "lead_capture",
+      first_name: userData.name.split(" ")[0],
+      last_name: userData.name.split(" ").slice(1).join(" ") || "",
+      phone: whatsappRaw,
+      email: userData.email,
+    });
+
     setStep("intro");
+  };
+
+  const handleWhatsappChange = (value: string) => {
+    let digits = value.replace(/\D/g, "");
+    if (digits.length > 11) digits = digits.substring(0, 11);
+
+    let formatted = digits;
+    if (digits.length > 0) {
+      formatted = "(" + digits.substring(0, 2) + ") " + digits.substring(2, 7);
+      if (digits.length > 7) formatted += "-" + digits.substring(7);
+    }
+    setUserData({ ...userData, whatsapp: formatted });
   };
 
   const handleStartQuiz = () => {
@@ -316,7 +353,7 @@ export default function App() {
                       placeholder="(11) 99999-9999" 
                       className="bg-black border-neutral-800 h-11 md:h-14 text-white focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-primary rounded-none transition-all"
                       value={userData.whatsapp}
-                      onChange={(e) => setUserData({ ...userData, whatsapp: e.target.value })}
+                      onChange={(e) => handleWhatsappChange(e.target.value)}
                     />
                   </div>
                   
@@ -652,7 +689,7 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <Button className="w-full h-16 md:h-20 text-sm md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
+                      <Button className="w-full h-auto min-h-[4rem] md:h-20 text-sm md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all text-white border-0 hover:scale-[1.02] mb-4 animate-cta-pulse py-4 md:py-0 leading-tight clip-button">
                         Quero Dominar a Rede CAN Agora ➔
                       </Button>
                     </a>
