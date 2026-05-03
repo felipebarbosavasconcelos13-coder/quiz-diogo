@@ -417,7 +417,7 @@ export default function App() {
                       id="feedback-section"
                       initial={{ opacity: 0, height: 0, marginTop: 0 }}
                       animate={{ opacity: 1, height: "auto", marginTop: 32 }}
-                      className={`p-6 bg-black border border-neutral-800 border-l-4 ${
+                      className={`p-3 md:p-6 bg-black border border-neutral-800 border-l-4 ${
                         currentQuestion.type === "technical" && !currentQuestion.options[selectedOption!].correct 
                         ? "border-l-secondary" : "border-l-primary"
                       }`}
@@ -541,7 +541,7 @@ export default function App() {
                     Mais alunos transformados:
                   </h3>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     { src: "/videos/sem dados.mp4", name: "Aluno", info: "Depoimento real" },
                     { src: "/videos/sem dados 2.mp4", name: "Aluno", info: "Depoimento real" },
@@ -652,7 +652,7 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <Button className="w-full h-16 md:h-20 text-base md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
+                      <Button className="w-full h-16 md:h-20 text-sm md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
                         Quero Dominar a Rede CAN Agora ➔
                       </Button>
                     </a>
