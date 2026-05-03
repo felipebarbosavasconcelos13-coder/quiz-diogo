@@ -595,6 +595,27 @@ body::before {
     text-transform: uppercase;
 }
 .cta-btn {
-    font-size: 1.3rem;
-    padding: 1.5rem 2rem;
+    font-size: 1rem;
+    padding: 1rem 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+    line-height: 1.2;
+}
+@media(min-width: 640px) {
+    .cta-btn {
+        font-size: 1.3rem;
+        padding: 1.5rem 2rem;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 123, 41, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(255, 123, 41, 0);
+    }
+}
+
+.pulse-effect {
+    animation: pulse 2s ease-in-out infinite;
 }

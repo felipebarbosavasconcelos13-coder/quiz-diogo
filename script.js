@@ -147,7 +147,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         userData.name = document.getElementById('name').value.trim();
         userData.email = document.getElementById('email').value.trim();
-        userData.whatsapp = document.getElementById('whatsapp').value.trim();
+        const whatsappRaw = document.getElementById('whatsapp').value.replace(/\D/g, '');
+
+        if (whatsappRaw.length !== 11) {
+            alert('Informe um número de WhatsApp válido com DDD (ex: 11999999999).');
+            return;
+        }
+
+        if (/^(\d)\1{10}$/.test(whatsappRaw)) {
+            alert('Número de WhatsApp inválido. Verifique e tente novamente.');
+            return;
+        }
+
+        const ddd = parseInt(whatsappRaw.substring(0, 2));
+        if (ddd < 11 || ddd > 99) {
+            alert('DDD inválido. Informe um número de WhatsApp com DDD correto.');
+            return;
+        }
+
+        userData.whatsapp = whatsappRaw;
 
         // Get first name
         const firstName = userData.name.split(' ')[0];
@@ -157,10 +175,31 @@ document.addEventListener('DOMContentLoaded', () => {
             span.textContent = firstName;
         });
 
-        // Track Lead (simulated)
+        // Push to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'lead_capture',
+            first_name: firstName,
+            last_name: userData.name.split(' ').slice(1).join(' ') || '',
+            phone: userData.whatsapp,
+            email: userData.email
+        });
+
         console.log('Lead Capturado:', userData);
 
         showStep(stepIntro);
+    });
+
+    // WhatsApp Input Formatting
+    const whatsappInput = document.getElementById('whatsapp');
+    whatsappInput.addEventListener('input', () => {
+        let value = whatsappInput.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.substring(0, 11);
+        
+        if (value.length > 0) {
+            value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + (value.length > 7 ? '-' + value.substring(7) : '');
+        }
+        whatsappInput.value = value;
     });
 
     // Start Quiz

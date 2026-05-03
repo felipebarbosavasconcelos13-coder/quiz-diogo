@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Especialista CAN BUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;0,900;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="container">
+        
+        <!-- Step 1: Lead Capture -->
+        <div id="step-capture" class="step active premium-card">
+            <div class="header-badge">Diagnóstico Gratuito</div>
+            <h1 class="main-title">Você sente que está sendo atropelado pela tecnologia dos novos carros?</h1>
+            <p class="subtitle">Descubra agora o que está <strong>travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong>especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.</p>
+            
+            <form id="lead-form" class="form-group">
+                <div class="input-wrapper">
+                    <label for="name">Seu primeiro nome</label>
+                    <input type="text" id="name" required placeholder="Ex: João">
+                </div>
+                <div class="input-wrapper">
+                    <label for="email">E-mail profissional</label>
+                    <input type="email" id="email" required placeholder="joao@oficina.com.br">
+                </div>
+                <div class="input-wrapper">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" required placeholder="(11) 99999-9999">
+                </div>
+                <button type="submit" class="btn primary-btn glow-effect">Iniciar Diagnóstico Gratuito</button>
+            </form>
+        </div>
+
+        <!-- Step 2: Introduction -->
+        <div id="step-intro" class="step hidden premium-card">
+            <h2 class="section-title">Bem-vindo, <span class="lead-name highlight"></span>!</h2>
+            <p class="text-large">O mercado automotivo mudou.</p>
+            <p class="text-regular">Quem não domina a eletrônica está perdendo dinheiro todos os dias para a concessionária. <span class="lead-name"></span>, responda com sinceridade às próximas 5 perguntas e veja seu nível atual.</p>
+            <button id="btn-start-quiz" class="btn primary-btn mt-4">Começar o Quiz</button>
+        </div>
+
+        <!-- Step 3: Quiz Container -->
+        <div id="step-quiz" class="step hidden premium-card">
+            <div class="progress-bar">
+                <div class="progress-fill" id="quiz-progress"></div>
+            </div>
+            <div class="question-counter">Pergunta <span id="current-q-num">1</span> de 5</div>
+            
+            <div id="question-container">
+                <h3 id="question-text" class="question-text"></h3>
+                <div id="options-container" class="options-grid"></div>
+            </div>
+
+            <!-- Feedback Modal / Section (Hidden initially) -->
+            <div id="feedback-section" class="feedback-box hidden">
+                <div id="feedback-icon" class="feedback-icon"></div>
+                <h4 id="feedback-title" class="feedback-title"></h4>
+                <p id="feedback-text" class="feedback-text"></p>
+                
+                <!-- Video Placeholder (Dynamic) -->
+                <div id="video-container" class="video-container hidden">
+                    <div class="video-wrapper">
+                        <div class="video-placeholder">
+                            <span class="play-icon">▶</span>
+                            <p>VÍDEO DEPOIMENTO / EXPLICAÇÃO</p>
+                        </div>
+                    </div>
+                    <p id="video-call" class="video-call"></p>
+                </div>
+
+                <button id="btn-next-question" class="btn secondary-btn mt-4">Próxima Etapa ➔</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Loading Result -->
+        <div id="step-loading" class="step hidden premium-card text-center">
+            <div class="spinner"></div>
+            <h2 class="section-title">Analisando seu perfil, <span class="lead-name"></span>...</h2>
+            <p>Calculando seus resultados e gerando seu diagnóstico personalizado.</p>
+        </div>
+
+        <!-- Step 5: Result & Mini Landing Page -->
+        <div id="step-result" class="step hidden">
+            <!-- Result Profile -->
+            <div class="premium-card mb-4 result-box">
+                <div class="score-badge">Sua Pontuação: <span id="final-score"></span>/5</div>
+                <h2 id="profile-title" class="profile-title"></h2>
+                
+                <div class="diagnostic-grid">
+                    <div class="diag-card">
+                        <h4>⚠️ Seu Diagnóstico Atual</h4>
+                        <p id="profile-diagnostic"></p>
+                    </div>
+                    <div class="diag-card success">
+                        <h4>💡 A Oportunidade</h4>
+                        <p id="profile-opportunity"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Landing Page -->
+            <div class="premium-card landing-page">
+                <h1 class="lp-headline">Saia da "Briga por Preço" e torne-se o <span>Especialista</span> que as concessionárias tentam esconder.</h1>
+                
+                <div class="lp-video">
+                    <!-- Video Proof Placeholder -->
+                    <div class="video-wrapper">
+                        <div class="video-placeholder">
+                            <span class="play-icon">▶</span>
+                            <p>VÍDEO DE PROVA SOCIAL (DEPOIMENTOS)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lp-content">
+                    <p class="lp-promise">O treinamento completo de <strong>Rede CAN (CAN BUS)</strong> ensina a lógica técnica e o processo estruturado para diagnosticar qualquer falha de comunicação em minutos, não em dias.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="icon">⚙️</span>
+                            <span>Fim do medo de errar diagnóstico e "queimar o nome".</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">⏱️</span>
+                            <span>Redução drástica do tempo perdido com carros parados.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">💰</span>
+                            <span>Liberdade para cobrar pelo conhecimento, não só pelas peças.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🔧</span>
+                            <span>Domínio total de Scanners e Osciloscópios.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🚗</span>
+                            <span>Casos reais de oficina: i30, Jetta e Peugeot.</span>
+                        </div>
+                    </div>
+
+                    <div class="instructor-box">
+                        <img src="https://ui-avatars.com/api/?name=Diogo+Vieira&background=0D8ABC&color=fff&size=128" alt="Diogo Vieira" class="avatar">
+                        <div>
+                            <h4>Diogo Vieira</h4>
+                            <p>Instrutor com vasta experiência de chão de oficina, que já formou profissionais no Brasil e no exterior focados na aplicação real, sem enrolação teórica.</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-box">
+                        <p class="emotional-call"><strong><span class="lead-name"></span></strong>, você quer ser lembrado como o mecânico que "trocou tudo e não resolveu" ou como o <strong>especialista que resolve o que ninguém mais consegue</strong>? A decisão de hoje define seu lucro de amanhã.</p>
+                        
+                        <div class="price-info">
+                            <p class="price-installment">5x de R$ 76,00</p>
+                            <p class="price-cash">ou R$ 380,00 à vista</p>
+                        </div>
+
+                        <a href="https://pay.hotmart.com" target="_blank" class="btn primary-btn pulse-effect cta-btn">
+                            QUERO ME TORNAR UM ESPECIALISTA AGORA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

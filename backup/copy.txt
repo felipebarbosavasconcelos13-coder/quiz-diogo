@@ -1,0 +1,112 @@
+Meu curso custa 5 x de R$ 76,00
+Ou R$ 380,00 à vista
+Nome: Especialista em rede CAN
+
+### 1. Tela de Captura
+**Texto Persuasivo:**
+"Você sente que está sendo atropelado pela tecnologia dos novos carros? Descubra agora o que está **travando sua evolução** e saiba se você é um trocador de peças ou um **especialista em diagnósticos avançados**. Receba seu diagnóstico gratuito em 2 minutos."
+
+*   **Nome:** `{{nome}}`
+*   **E-mail:** `{{email}}`
+*   **WhatsApp:** `{{whatsapp}}`
+
+---
+
+### 2. Introdução
+"O mercado automotivo mudou. Quem não domina a eletrônica está perdendo dinheiro todos os dias para a concessionária. Responda com sinceridade e veja seu nível atual."
+
+---
+
+### 3. O Quiz (5 Perguntas)
+
+#### Pergunta 1 (Técnica Obrigatória):
+**De modo geral, qual é o valor da resistência na rede CAN em sistemas onde todos os módulos estão conectados?**
+*   A) 120 Ohms
+*   B) 120 Volts
+*   **C) 60 Ohms**
+*   D) 60 Volts
+
+> **Feedback:** Se você marcou 60 Ohms, acertou! Isso indica o paralelo dos resistores de terminação. Errar isso pode te fazer condenar um módulo sem necessidade.
+>
+> **[VÍDEO EXPLICATIVO 1]**
+> *Chamada:* "Veja como um teste de 10 segundos pode salvar seu dia na oficina."
+
+#### Pergunta 2 (Estratégica - Viés de Aversão à Perda):
+**Quantos serviços de ticket alto (acima de R$ 500 em mão de obra) você deixou de pegar este mês por não se sentir seguro com o scanner ou osciloscópio?**
+*   A) Nenhum, eu resolvo tudo.
+*   B) Entre 1 e 3 (isso dói no bolso).
+*   C) Mais de 5 (estou perdendo muito dinheiro).
+
+> **Feedback:** A dor de perder dinheiro é duas vezes mais forte que o prazer de ganhar. Se você está recusando serviço, sua oficina está pagando para você trabalhar.
+
+#### Pergunta 3 (Técnica Obrigatória):
+**Quando aparece um DTC que começa com a letra “U”, referindo-se a uma falha de rede CAN, o que isso significa?**
+*   A) Errada. Todo DTC "U" indica obrigatoriamente curto-circuito na rede física.
+*   **B) Correta. Pode referir-se apenas a uma falta de informação na rede; o problema pode ser um sensor e não o cabeamento.**
+
+> **Feedback:** Exato! O DTC "U" é sobre comunicação. Trocar o chicote sem entender isso é o erro fatal do "trocador de peças".
+>
+> **[VÍDEO EXPLICATIVO 2]**
+> *Chamada:* "Entenda de uma vez por todas o que os códigos 'U' querem te dizer."
+
+#### Pergunta 4 (Estratégica - Viés do Status Quo):
+**Se você continuar trabalhando exatamente como faz hoje, sem dominar a Rede CAN, como estará sua oficina daqui a 2 anos com a chegada em massa dos carros híbridos e elétricos?**
+*   A) Acho que consigo me virar.
+*   B) Tenho medo de ficar totalmente ultrapassado.
+*   C) Se eu não mudar agora, vou ter que fechar as portas.
+
+> **Feedback:** Tendemos a deixar as coisas como estão (Status Quo), mas a mudança é inevitável. Quem antecipa a evolução domina a região.
+
+#### Pergunta 5 (Técnica Obrigatória):
+**Qual a impedância de uma rede CAN e qual o equipamento correto para o teste?**
+*   A) 60 Ohms, multímetro na função ohmímetro.
+*   B) 60 Volts, multímetro na função voltímetro.
+*   **C) 60 Ohms, analisador de impedância.**
+*   D) 60 A, analisador de corrente elétrica.
+
+> **Feedback:** O analisador de impedância é a ferramenta de quem não quer "chutar" o diagnóstico.
+>
+> **[VÍDEO EXPLICATIVO 3]**
+> *Chamada:* "Pare de usar ferramentas do século passado para carros modernos."
+
+---
+
+### 4. Resultados por Perfil (Pontuação/Score)
+
+*   **Perfil A: Iniciante Travado (0-2 acertos):**
+    *   **Diagnóstico:** Você é um excelente mecânico prático, mas a eletrônica está te assombrando. Sua oficina vive cheia, mas o lucro é baixo porque você perde horas em defeitos "cabeludos".
+    *   **Oportunidade:** Parar de ser "escravo" do carro e passar a dominar a lógica do diagnóstico.
+*   **Perfil B: Reparador em Evolução (3-4 acertos):**
+    *   **Diagnóstico:** Você já entende que o multímetro não resolve tudo, mas ainda sente insegurança ao cobrar caro pelo diagnóstico. Falta um **método estruturado**.
+    *   **Oportunidade:** Subir o ticket médio cobrando o diagnóstico separado da execução.
+*   **Perfil C: Profissional Pronto para o Topo (5 acertos):**
+    *   **Diagnóstico:** Você tem a base, mas o mercado de "troca de peça" está te puxando para baixo. Você precisa do selo de **Especialista em Rede CAN** para se tornar a referência da sua cidade.
+
+---
+
+### 5. Mini Landing Page Final
+
+**Headline:**
+**"Saia da 'Briga por Preço' e Torne-se o Especialista que as Concessionárias Tentam Esconder."**
+
+**Promessa:**
+O treinamento completo de Rede CAN (CAN BUS) ensina a lógica técnica e o processo estruturado para diagnosticar qualquer falha de comunicação em minutos, não em dias.
+
+**Dores Resolvidas:**
+*   Fim do medo de errar diagnóstico e "queimar o nome".
+*   Redução drástica do tempo perdido com carros parados na oficina.
+*   Liberdade para cobrar pelo conhecimento, não apenas pela troca de peças.
+
+**Benefícios Práticos:**
+*   Domínio total de Scanners e Osciloscópios.
+*   Casos Reais: Diagnósticos passo a passo em veículos como i30, Jetta e Peugeot.
+*   Acesso vitalício e suporte técnico.
+
+**Autoridade:**
+**Diogo Vieira**, instrutor com vasta experiência de chão de oficina, que já formou profissionais no Brasil e no exterior focados na aplicação real, sem enrolação teórica.
+
+**Chamada Emocional:**
+"[Nome do lead], você quer ser lembrado como o mecânico que 'trocou tudo e não resolveu' ou como o especialista que resolve o que ninguém mais consegue? A decisão de hoje define seu lucro de amanhã."
+
+**Botão de Ação:**
+**[QUERO ME TORNAR UM ESPECIALISTA AGORA]** (Leva para o checkout).
