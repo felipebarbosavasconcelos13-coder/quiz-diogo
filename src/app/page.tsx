@@ -638,9 +638,16 @@ export default function App() {
                       </div>
                     </div>
                     
-                    <Button className="w-full h-16 md:h-20 text-base md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
-                      Quero Dominar a Rede CAN Agora ➔
-                    </Button>
+                    <a
+                      href="https://pay.hotmart.com/H105447085I?bid=1776721680762"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button className="w-full h-16 md:h-20 text-base md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all clip-button text-white border-0 hover:scale-[1.02] mb-4">
+                        Quero Dominar a Rede CAN Agora ➔
+                      </Button>
+                    </a>
                     
                     <div className="flex items-center justify-center gap-4 text-neutral-600 text-[10px] md:text-xs">
                       <span>🔒 Pagamento 100% seguro</span>
