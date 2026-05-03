@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, Settings, Clock, CircleDollarSign, Wrench, Car, Quote, Star } from "lucide-react";
+import { PlayCircle, Settings, Clock, CircleDollarSign, Wrench, Car, Quote, Star, Infinity } from "lucide-react";
 
 // Testimonial Videos — mapeamento correto
 const testimonials = [
@@ -674,12 +674,16 @@ export default function App() {
                        A janela de oportunidade está fechando. Ou você se atualiza, <strong className="text-white">ou as oficinas especializadas vão roubar seus melhores clientes.</strong>
                      </p>
 
-                     <div className="text-center mb-6">
+                      <div className="text-center mb-6">
                        <div className="text-5xl md:text-7xl font-black text-primary drop-shadow-[0_0_30px_rgba(255,123,41,0.5)] mb-1 tracking-tighter leading-none">
                          5x R$ 76<span className="text-3xl md:text-5xl">,00</span>
                        </div>
-                       <div className="text-neutral-500 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
+                       <div className="text-neutral-500 font-bold uppercase tracking-widest text-xs md:text-sm mb-3">
                          Ou R$ 380,00 à vista
+                       </div>
+                       <div className="inline-flex items-center gap-1.5 bg-green-500/10 border border-green-500/30 px-4 py-1.5">
+                         <Infinity className="w-3.5 h-3.5 text-green-400" />
+                         <span className="text-green-400 font-black uppercase tracking-widest text-[11px] md:text-xs">ACESSO VITALÍCIO</span>
                        </div>
                      </div>
                     
@@ -689,8 +693,8 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <Button className="w-full h-auto min-h-[4rem] md:h-20 text-sm md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all text-white border-0 hover:scale-[1.02] mb-4 animate-cta-pulse py-4 md:py-0 leading-tight clip-button">
-                        Quero Dominar a Rede CAN Agora ➔
+                       <Button className="w-full h-auto min-h-[4rem] md:h-20 text-sm md:text-xl font-black uppercase italic tracking-wider bg-gradient-to-br from-primary to-secondary hover:shadow-[0_0_40px_rgba(255,123,41,0.6)] transition-all text-white border-0 hover:scale-[1.02] mb-4 animate-cta-pulse py-4 md:py-0 leading-tight whitespace-normal text-center clip-button">
+                        Quero Dominar a Rede CAN<br />Agora ➔
                       </Button>
                     </a>
                     
