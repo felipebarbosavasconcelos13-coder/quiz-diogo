@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { PlayCircle, Settings, Clock, CircleDollarSign, Wrench, Car, Quote, Star, Infinity } from "lucide-react";
 
 // Testimonial Videos — mapeamento correto
@@ -308,11 +309,14 @@ export default function App() {
                   </div>
                   <div className="flex-shrink-0 relative order-first md:order-last">
                     <div className="w-28 h-32 md:w-56 md:h-64 relative overflow-hidden border-b-4 border-b-primary mx-auto">
-                      <picture>
-                        <source srcSet="/images/hero-mobile.webp" media="(max-width: 767px)" type="image/webp" />
-                        <source srcSet="/images/hero-desktop.webp" media="(min-width: 768px)" type="image/webp" />
-                        <img src="/images/Hero.png" alt="Diogo — Especialista em Rede CAN" className="w-full h-full object-cover object-top" loading="eager" />
-                      </picture>
+                      <Image
+                        src="/images/Hero.png"
+                        alt="Diogo — Especialista em Rede CAN"
+                        fill
+                        priority
+                        className="object-cover object-top"
+                        sizes="(max-width: 767px) 112px, (max-width: 1024px) 224px, 256px"
+                      />
                     </div>
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 whitespace-nowrap">
                       Mestre Diogo
@@ -640,12 +644,16 @@ export default function App() {
                    {/* Sobre o Diogo — destacado */}
                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-black p-6 md:p-8 border-2 border-primary mb-6 md:mb-8 relative overflow-hidden">
                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary" />
-                     <div className="relative flex-shrink-0">
-                       <picture>
-                         <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
-                         <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
-                         <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-[200px] h-[250px] md:w-[240px] md:h-[290px] object-cover border-[3px] border-primary shadow-[0_0_30px_rgba(255,123,41,0.25)]" loading="lazy" />
-                       </picture>
+                      <div className="relative flex-shrink-0">
+                       <div className="relative w-[200px] h-[250px] md:w-[240px] md:h-[290px]">
+                         <Image
+                           src="/images/Diogo.jpg"
+                           alt="Diogo na oficina"
+                           fill
+                           className="object-cover border-[3px] border-primary shadow-[0_0_30px_rgba(255,123,41,0.25)]"
+                           sizes="(max-width: 767px) 200px, 240px"
+                         />
+                       </div>
                        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-black text-[10px] md:text-xs font-black uppercase tracking-widest px-3 py-1.5 whitespace-nowrap">
                          +30 anos de oficina
                        </div>
