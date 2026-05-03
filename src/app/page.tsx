@@ -600,53 +600,51 @@ export default function App() {
                      </div>
                   </div>
 
-                  {/* Sobre o Diogo — compacto */}
-                  <div className="flex items-center gap-4 md:gap-6 bg-black p-4 md:p-6 border border-neutral-800 mb-6 md:mb-8">
-                    <div className="w-20 h-20 md:w-28 md:h-28 relative rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
-                      <picture>
-                        <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
-                        <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
-                        <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-full h-full object-cover" loading="lazy" />
-                      </picture>
-                    </div>
-                    <div>
-                      <h4 className="text-lg md:text-xl font-black uppercase text-white mb-1">Com o Mestre Diogo</h4>
-                      <p className="text-neutral-400 leading-relaxed text-xs md:text-sm">
-                        +15 anos de oficina. Criador do método que já destravou milhares de reparadores pelo Brasil.
-                      </p>
-                    </div>
-                  </div>
+                   {/* Sobre o Diogo — destacado */}
+                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-black p-6 md:p-8 border-2 border-primary mb-6 md:mb-8 relative overflow-hidden">
+                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary" />
+                     <div className="relative flex-shrink-0">
+                       <picture>
+                         <source srcSet="/images/diogo-mobile.webp" media="(max-width: 767px)" type="image/webp" />
+                         <source srcSet="/images/diogo-desktop.webp" media="(min-width: 768px)" type="image/webp" />
+                         <img src="/images/Diogo.jpg" alt="Diogo na oficina" className="w-[200px] h-[250px] md:w-[240px] md:h-[290px] object-cover border-[3px] border-primary shadow-[0_0_30px_rgba(255,123,41,0.25)]" loading="lazy" />
+                       </picture>
+                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-black text-[10px] md:text-xs font-black uppercase tracking-widest px-3 py-1.5 whitespace-nowrap">
+                         +30 anos de oficina
+                       </div>
+                     </div>
+                     <div className="text-center md:text-left">
+                       <h4 className="text-xl md:text-2xl font-black uppercase text-white mb-3 tracking-tight">Com o Mestre Diogo</h4>
+                       <p className="text-neutral-400 leading-relaxed text-sm mb-3">
+                         Diogo Vieira é o 1º especialista do Brasil em diagnóstico ucraniano, com mais de 30 anos de experiência dentro da oficina, vivendo na prática os desafios reais que muitos mecânicos enfrentam todos os dias. Sua autoridade não vem apenas da teoria, mas de décadas diagnosticando falhas complexas, lidando com módulos, redes automotivas e problemas que muitos profissionais ainda têm dificuldade para resolver.
+                       </p>
+                       <p className="text-neutral-400 leading-relaxed text-sm mb-3">
+                         Ao longo da sua trajetória, Diogo transformou sua experiência em um método direto, técnico e aplicável, ajudando mecânicos a saírem do achismo e diagnosticarem com mais segurança. Seu ensino é voltado para quem quer entender o problema de verdade, evitar trocas desnecessárias de peças e começar a cobrar melhor por diagnósticos que exigem conhecimento técnico.
+                       </p>
+                       <p className="text-neutral-300 text-sm leading-relaxed border-t border-neutral-800 pt-3 mt-1">
+                         Hoje, seus alunos estão no <strong className="text-primary">Brasil, Paraguai e Portugal</strong>, provando que seu método já ultrapassou fronteiras e vem ajudando profissionais de diferentes mercados a evoluírem na oficina.
+                       </p>
+                     </div>
+                   </div>
 
-                  {/* BLOCO DE PREÇO — ANCORAGEM AGRESSIVA */}
-                  <div className="relative bg-[#050505] border-2 border-primary/30 p-6 md:p-10 overflow-hidden">
-                    {/* Selo de desconto */}
-                    <div className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] md:text-xs font-black uppercase px-4 py-1.5 tracking-wider shadow-lg z-10">
-                      🔥 Oferta Especial
-                    </div>
-                    
-                    <p className="text-base md:text-lg text-neutral-300 text-center mb-6">
-                      A janela de oportunidade está fechando. Ou você se atualiza, <strong className="text-white">ou as oficinas especializadas vão roubar seus melhores clientes.</strong>
-                    </p>
+                   {/* BLOCO DE PREÇO */}
+                   <div className="relative bg-[#050505] border-2 border-primary/30 p-6 md:p-10 overflow-hidden">
+                     <div className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] md:text-xs font-black uppercase px-4 py-1.5 tracking-wider shadow-lg z-10">
+                       🔥 Oferta Especial
+                     </div>
+                     
+                     <p className="text-base md:text-lg text-neutral-300 text-center mb-6">
+                       A janela de oportunidade está fechando. Ou você se atualiza, <strong className="text-white">ou as oficinas especializadas vão roubar seus melhores clientes.</strong>
+                     </p>
 
-                    {/* Ancoragem */}
-                    <div className="text-center mb-6">
-                      <div className="text-neutral-600 text-sm md:text-base font-bold uppercase tracking-wider mb-1">Valor real do curso:</div>
-                      <div className="text-neutral-600 text-2xl md:text-4xl font-black line-through decoration-secondary decoration-[3px] mb-4">R$ 2.997,00</div>
-                      
-                      <div className="inline-block bg-primary/10 border border-primary/30 px-4 py-1 mb-4">
-                        <span className="text-primary text-xs md:text-sm font-black uppercase tracking-wider">Desconto exclusivo para quem fez o quiz</span>
-                      </div>
-                      
-                      <div className="text-5xl md:text-7xl font-black text-primary drop-shadow-[0_0_30px_rgba(255,123,41,0.5)] mb-1 tracking-tighter leading-none">
-                        12x R$ 49<span className="text-3xl md:text-5xl">,90</span>
-                      </div>
-                      <div className="text-neutral-500 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
-                        Ou R$ 497,00 à vista
-                      </div>
-                      <div className="text-primary/60 text-[10px] md:text-xs font-semibold">
-                        Economia de R$ 2.500,00 — apenas hoje
-                      </div>
-                    </div>
+                     <div className="text-center mb-6">
+                       <div className="text-5xl md:text-7xl font-black text-primary drop-shadow-[0_0_30px_rgba(255,123,41,0.5)] mb-1 tracking-tighter leading-none">
+                         5x R$ 76<span className="text-3xl md:text-5xl">,00</span>
+                       </div>
+                       <div className="text-neutral-500 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
+                         Ou R$ 380,00 à vista
+                       </div>
+                     </div>
                     
                     <a
                       href="https://pay.hotmart.com/H105447085I?bid=1776721680762"
