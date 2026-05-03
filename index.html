@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Especialista CAN BUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;0,900;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TF229MRB');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF229MRB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="app" class="container">
+        
+        <!-- Step 1: Lead Capture -->
+        <div id="step-capture" class="step active premium-card">
+            <div class="header-badge">Diagnóstico Gratuito</div>
+            <h1 class="main-title">Você sente que está sendo atropelado pela tecnologia dos novos carros?</h1>
+            <p class="subtitle">Descubra agora o que está <strong>travando sua evolução</strong> e saiba se você é um trocador de peças ou um <strong>especialista em diagnósticos avançados</strong>. Receba seu diagnóstico em 2 minutos.</p>
+            
+            <form id="lead-form" class="form-group">
+                <div class="input-wrapper">
+                    <label for="name">Seu primeiro nome</label>
+                    <input type="text" id="name" required placeholder="Ex: João">
+                </div>
+                <div class="input-wrapper">
+                    <label for="email">E-mail profissional</label>
+                    <input type="email" id="email" required placeholder="joao@oficina.com.br">
+                </div>
+                <div class="input-wrapper">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" required placeholder="(11) 99999-9999">
+                </div>
+                <button type="submit" class="btn primary-btn glow-effect">Iniciar Diagnóstico Gratuito</button>
+            </form>
+        </div>
+
+        <!-- Step 2: Introduction -->
+        <div id="step-intro" class="step hidden premium-card">
+            <h2 class="section-title">Bem-vindo, <span class="lead-name highlight"></span>!</h2>
+            <p class="text-large">O mercado automotivo mudou.</p>
+            <p class="text-regular">Quem não domina a eletrônica está perdendo dinheiro todos os dias para a concessionária. <span class="lead-name"></span>, responda com sinceridade às próximas 5 perguntas e veja seu nível atual.</p>
+            <button id="btn-start-quiz" class="btn primary-btn mt-4">Começar o Quiz</button>
+        </div>
+
+        <!-- Step 3: Quiz Container -->
+        <div id="step-quiz" class="step hidden premium-card">
+            <div class="progress-bar">
+                <div class="progress-fill" id="quiz-progress"></div>
+            </div>
+            <div class="question-counter">Pergunta <span id="current-q-num">1</span> de 5</div>
+            
+            <div id="question-container">
+                <h3 id="question-text" class="question-text"></h3>
+                <div id="options-container" class="options-grid"></div>
+            </div>
+
+            <!-- Feedback Modal / Section (Hidden initially) -->
+            <div id="feedback-section" class="feedback-box hidden">
+                <div id="feedback-icon" class="feedback-icon"></div>
+                <h4 id="feedback-title" class="feedback-title"></h4>
+                <p id="feedback-text" class="feedback-text"></p>
+                
+                <!-- Video Placeholder (Dynamic) -->
+                <div id="video-container" class="video-container hidden">
+                    <video id="feedback-video" controls class="w-full aspect-video bg-black" playsInline></video>
+                    <p id="video-call" class="video-call"></p>
+                </div>
+
+                <button id="btn-next-question" class="btn secondary-btn mt-4">Próxima Etapa ➔</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Loading Result -->
+        <div id="step-loading" class="step hidden premium-card text-center">
+            <div class="spinner"></div>
+            <h2 class="section-title">Analisando seu perfil, <span class="lead-name"></span>...</h2>
+            <p>Calculando seus resultados e gerando seu diagnóstico personalizado.</p>
+        </div>
+
+        <!-- Step 5: Result & Mini Landing Page -->
+        <div id="step-result" class="step hidden">
+            <!-- Result Profile -->
+            <div class="premium-card mb-4 result-box">
+                <div class="score-badge">Sua Pontuação: <span id="final-score"></span>/5</div>
+                <h2 id="profile-title" class="profile-title"></h2>
+                
+                <div class="diagnostic-grid">
+                    <div class="diag-card">
+                        <h4>⚠️ Seu Diagnóstico Atual</h4>
+                        <p id="profile-diagnostic"></p>
+                    </div>
+                    <div class="diag-card success">
+                        <h4>💡 A Oportunidade</h4>
+                        <p id="profile-opportunity"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Landing Page -->
+            <div class="premium-card landing-page">
+                <h1 class="lp-headline">Saia da "Briga por Preço" e torne-se o <span>Especialista</span> que as concessionárias tentam esconder.</h1>
+                
+                <div class="lp-content">
+                    <p class="lp-promise">O treinamento completo de <strong>Rede CAN (CAN BUS)</strong> ensina a lógica técnica e o processo estruturado para diagnosticar qualquer falha de comunicação em minutos, não em dias.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="icon">⚙️</span>
+                            <span>Fim do medo de errar diagnóstico e "queimar o nome".</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">⏱️</span>
+                            <span>Redução drástica do tempo perdido com carros parados.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">💰</span>
+                            <span>Liberdade para cobrar pelo conhecimento, não só pelas peças.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🔧</span>
+                            <span>Domínio total de Scanners e Osciloscópios.</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🚗</span>
+                            <span>Casos reais de oficina: i30, Jetta e Peugeot.</span>
+                        </div>
+                    </div>
+
+                    <div class="instructor-box instructor-box--featured">
+                        <div class="instructor-photo-wrapper">
+                            <img src="Imagens/Diogo.jpg" alt="Diogo Vieira" class="instructor-photo">
+                            <div class="instructor-badge">+30 anos de oficina</div>
+                        </div>
+                        <div class="instructor-info">
+                            <h4>Com o Mestre Diogo</h4>
+                            <p>Diogo Vieira é o 1º especialista do Brasil em diagnóstico ucraniano, com mais de 30 anos de experiência dentro da oficina, vivendo na prática os desafios reais que muitos mecânicos enfrentam todos os dias. Sua autoridade não vem apenas da teoria, mas de décadas diagnosticando falhas complexas, lidando com módulos, redes automotivas e problemas que muitos profissionais ainda têm dificuldade para resolver.</p>
+                            <p>Ao longo da sua trajetória, Diogo transformou sua experiência em um método direto, técnico e aplicável, ajudando mecânicos a saírem do achismo e diagnosticarem com mais segurança. Seu ensino é voltado para quem quer entender o problema de verdade, evitar trocas desnecessárias de peças e começar a cobrar melhor por diagnósticos que exigem conhecimento técnico.</p>
+                            <p class="instructor-reach">Hoje, seus alunos estão no <strong>Brasil, Paraguai e Portugal</strong>, provando que seu método já ultrapassou fronteiras e vem ajudando profissionais de diferentes mercados a evoluírem na oficina.</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-box">
+                        <p class="emotional-call"><strong><span class="lead-name"></span></strong>, você quer ser lembrado como o mecânico que "trocou tudo e não resolveu" ou como o <strong>especialista que resolve o que ninguém mais consegue</strong>? A decisão de hoje define seu lucro de amanhã.</p>
+                        
+                        <div class="price-info">
+                            <p class="price-installment">5x de R$ 76,00</p>
+                            <p class="price-cash">ou R$ 380,00 à vista</p>
+                        </div>
+
+                        <a href="https://pay.hotmart.com/H105447085I?bid=1776721680762" target="_blank" class="btn primary-btn pulse-effect cta-btn">
+                            QUERO ME TORNAR UM ESPECIALISTA AGORA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+console.log('%cScript de rastreio 4.0 by Comunidade Nova Ordem do Digital - Dericson Calari e Samuel Choairy', 'color: yellow; font-size: 20px;');
+
+(function () {
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function setCookie(cookieName, cookieValue, expirationTime) {
+        var cookiePath = "/";
+        expirationTime = expirationTime * 1000;
+        var date = new Date();
+        var dateTimeNow = date.getTime();
+        date.setTime(dateTimeNow + expirationTime);
+        var expirationDate = date.toUTCString();
+        document.cookie = cookieName + "=" + cookieValue + "; expires=" + expirationDate + "; path=" + cookiePath;
+    }
+
+    function getCookieValue(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    }
+
+    const adParams = ['fbclid', 'gclid'];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let isAdClick = false;
+    adParams.forEach(param => {
+        if (urlParams.has(param)) {
+            isAdClick = true;
+        }
+    });
+
+    if (isAdClick) {
+        const utmSource = getParameterByName('utm_source');
+        const utmMedium = getParameterByName('utm_medium');
+        const utmCampaign = getParameterByName('utm_campaign');
+        const utmContent = getParameterByName('utm_content');
+        const utmTerm = getParameterByName('utm_term');
+
+        if (utmSource) setCookie('cookieUtmSource', utmSource, 63072000);
+        if (utmMedium) setCookie('cookieUtmMedium', utmMedium, 63072000);
+        if (utmCampaign) setCookie('cookieUtmCampaign', utmCampaign, 63072000);
+        if (utmContent) setCookie('cookieUtmContent', utmContent, 63072000);
+        if (utmTerm) setCookie('cookieUtmTerm', utmTerm, 63072000);
+    }
+
+    let parametros = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+    const urlParamsCapt = new URLSearchParams(window.location.search);
+    const urlParamsCaptReferrer = new URLSearchParams(document.referrer.split('?')[1] || '');
+    let utms = {};
+
+    const cookieUtmSource = getCookieValue('cookieUtmSource');
+    const cookieUtmMedium = getCookieValue('cookieUtmMedium');
+    const cookieUtmCampaign = getCookieValue('cookieUtmCampaign');
+    const cookieUtmContent = getCookieValue('cookieUtmContent');
+    const cookieUtmTerm = getCookieValue('cookieUtmTerm');
+
+    parametros.forEach(el => {
+        if (el === "utm_source") {
+            utms[el] = urlParamsCapt.get(el) ?? (document.referrer ? (urlParamsCaptReferrer.get(el) ?? new URL(document.referrer).hostname) : "direto");
+        } else {
+            utms[el] = urlParamsCapt.get(el) ?? (urlParamsCaptReferrer.get(el) ?? "");
+        }
+    });
+
+    let scks = Object.values(utms).filter(value => value !== "");
+
+    let currentSckValues = [];
+    if (urlParamsCapt.get('sck')) {
+        currentSckValues = urlParamsCapt.get('sck').split('|');
+    }
+    scks = scks.filter(value => !currentSckValues.includes(value));
+
+    let srcValues = [cookieUtmSource, cookieUtmMedium, cookieUtmCampaign, cookieUtmContent, cookieUtmTerm].filter(value => value !== null && value !== "");
+
+    const updateLinks = (el, elURL) => {
+        const elSearchParams = new URLSearchParams(elURL.search);
+        let modified = false;
+
+        urlParams.forEach((value, key) => {
+            if (!elSearchParams.has(key)) {
+                elSearchParams.append(key, value);
+                modified = true;
+            }
+        });
+
+        for (let key in utms) {
+            if (!elSearchParams.has(key)) {
+                elSearchParams.append(key, utms[key]);
+                modified = true;
+            }
+        }
+
+        if (cookieUtmSource) elSearchParams.append('cookieUtmSource', cookieUtmSource);
+        if (cookieUtmMedium) elSearchParams.append('cookieUtmMedium', cookieUtmMedium);
+        if (cookieUtmCampaign) elSearchParams.append('cookieUtmCampaign', cookieUtmCampaign);
+        if (cookieUtmContent) elSearchParams.append('cookieUtmContent', cookieUtmContent);
+        if (cookieUtmTerm) elSearchParams.append('cookieUtmTerm', cookieUtmTerm);
+
+        if (!elSearchParams.has('sck') && scks.length > 0) {
+            elSearchParams.append('sck', scks.join('|'));
+            modified = true;
+        }
+
+        if (!elSearchParams.has('src') && srcValues.length > 0) {
+            elSearchParams.append('src', srcValues.join('|'));
+            modified = true;
+        }
+
+        if (modified) {
+            return elURL.origin + elURL.pathname + "?" + elSearchParams.toString();
+        }
+        return el.href;
+    };
+
+    document.querySelectorAll('a').forEach(el => {
+        try {
+            const elURL = new URL(el.href, window.location.origin);
+            if (!elURL.hash) {
+                el.href = updateLinks(el, elURL);
+            }
+        } catch (e) {
+            console.warn('Erro ao processar URL no link:', el.href);
+        }
+    });
+
+})();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
