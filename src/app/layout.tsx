@@ -24,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <meta name="facebook-domain-verification" content="15e4th1f221nqbvymfuuey8hm4oaxo" />
         <link rel="preconnect" href="https://pay.hotmart.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <Script id="gtm-head" strategy="beforeInteractive">
