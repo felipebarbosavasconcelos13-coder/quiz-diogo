@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlayCircle, Settings, Clock, CircleDollarSign, Wrench, Car, Quote, Star, Infinity } from "lucide-react";
+import { sendLeadWebhook, sendQuizWebhook } from "@/lib/webhook";
 
 // Testimonial Videos — mapeamento correto
 const testimonials = [
@@ -189,6 +190,7 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
 
   // Computed Values
   const currentQuestion = questions[currentQIndex];
@@ -227,6 +229,12 @@ export default function App() {
       email: userData.email,
     });
 
+    sendLeadWebhook({
+      name: userData.name,
+      email: userData.email,
+      whatsapp: whatsappRaw,
+    });
+
     setStep("intro");
   };
 
@@ -250,6 +258,11 @@ export default function App() {
     if (selectedOption !== null) return; // Prevent multiple clicks
 
     setSelectedOption(index);
+    setSelectedAnswers((prev) => {
+      const updated = [...prev];
+      updated[currentQIndex] = index;
+      return updated;
+    });
     if (option.correct) setScore((prev) => prev + 1);
     setShowFeedback(true);
     
@@ -261,6 +274,26 @@ export default function App() {
 
   const handleNextQuestion = () => {
     if (isLastQuestion) {
+      const profile = getProfile();
+      const answers = questions.map((q, i) => ({
+        question: q.text,
+        type: q.type,
+        selectedAnswer: q.options[selectedAnswers[i]]?.text ?? "",
+        isCorrect: q.type === "technical" ? q.options[selectedAnswers[i]]?.correct ?? false : true,
+      }));
+
+      sendQuizWebhook({
+        name: userData.name,
+        email: userData.email,
+        whatsapp: userData.whatsapp.replace(/\D/g, ""),
+        score,
+        totalQuestions: questions.length,
+        profile: profile.title,
+        diagnostic: profile.diagnostic,
+        opportunity: profile.opportunity,
+        answers,
+      });
+
       setStep("loading");
       setTimeout(() => {
         setStep("result");
